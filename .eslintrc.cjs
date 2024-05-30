@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   root: true,
-  plugins: ["unused-imports", "prettier"],
+  plugins: ["unused-imports", "eslint-plugin-react-compiler", "prettier"],
   extends: [
     "react-app",
     "plugin:prettier/recommended",
@@ -16,6 +16,7 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
+    "react-compiler/react-compiler": "error",
     "prettier/prettier": "error",
   },
   settings: {

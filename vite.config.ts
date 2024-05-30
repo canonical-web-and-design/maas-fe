@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
 import { defineConfig, loadEnv } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import * as path from "path";
 import eslint from "vite-plugin-eslint";
 
@@ -10,6 +10,12 @@ const manualChunks = [
   "@canonical/macaroon-bakery",
   "@/app/store/machine/slice",
 ];
+
+const ReactCompilerConfig = {
+  sources: (_filename) => {
+    return true;
+  },
+};
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -43,7 +49,14 @@ export default defineConfig(({ mode }) => {
       },
       sourcemap: true,
     },
-    plugins: [react(), eslint()],
+    plugins: [
+      react({
+        babel: {
+          plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
+        },
+      }),
+      eslint(),
+    ],
     server: { port: 8401, hmr: { port: 8402 } },
     resolve: {
       alias: { "@": path.resolve(__dirname, "src") },

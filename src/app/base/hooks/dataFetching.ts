@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import type { AnyAction } from "redux";
@@ -14,10 +14,11 @@ export const useFetchActions = (actions: (() => AnyAction)[]) => {
   const dispatch = useDispatch();
   const connectedCount = useSelector(statusSelectors.connectedCount);
 
+  const memoActions = useMemo(() => actions, [actions]);
+
   useEffect(() => {
-    actions.forEach((action) => {
+    memoActions.forEach((action) => {
       dispatch(action());
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, connectedCount]);
+  }, [memoActions, dispatch, connectedCount]);
 };

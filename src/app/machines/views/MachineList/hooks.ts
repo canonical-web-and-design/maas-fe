@@ -68,8 +68,7 @@ export const useResponsiveColumns = () => {
     return () => {
       window.removeEventListener("resize", updateColumns);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [setHiddenColumns, persistedHiddenColumns]);
 
   return [hiddenColumns, setHiddenColumns] as const;
 };

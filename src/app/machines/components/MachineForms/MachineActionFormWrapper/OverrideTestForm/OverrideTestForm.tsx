@@ -91,10 +91,10 @@ export const OverrideTestForm = ({
                         id: machineID,
                       })}
                     >
-                      Machine &gt; Hardware tests
+                      Machine - Hardware tests
                     </Link>
                   ) : (
-                    "Machine > Hardware tests"
+                    "Machine - Hardware tests"
                   )}
                   .
                 </span>
