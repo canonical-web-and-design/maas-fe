@@ -1,5 +1,6 @@
 import type { HTMLProps, ReactNode } from "react";
 
+import { AppMain } from "@canonical/react-components";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { matchPath, useLocation } from "react-router-dom";
@@ -44,7 +45,7 @@ const PageContent = ({
 
   return (
     <>
-      <main className="l-main">
+      <AppMain>
         {isSecondaryNavVisible ? (
           <div
             className={classNames("l-main__nav", `is-maas-${theme}--accent`)}
@@ -73,7 +74,7 @@ const PageContent = ({
             <ErrorBoundary>{children}</ErrorBoundary>
           </MainContentSection>
         </div>
-      </main>
+      </AppMain>
       <AppSidePanel content={sidePanelContent} title={sidePanelTitle} />
     </>
   );

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 import { Navigation } from "@canonical/maas-react-components";
-import { Button, Icon } from "@canonical/react-components";
+import { Button, Icon, SideNavigation } from "@canonical/react-components";
 
 import AppSideNavItem from "../AppSideNavItem";
 import type { SideNavigationProps } from "../AppSideNavigation";
@@ -93,7 +93,7 @@ export const AppSideNavItems = ({
   vaultIncomplete,
 }: Props): JSX.Element => {
   return (
-    <>
+    <SideNavigation hasIcons>
       {showLinks ? (
         <ul className="p-side-navigation__list">
           {groups.map((group, i) => (
@@ -147,7 +147,7 @@ export const AppSideNavItems = ({
           </ul>
         </>
       ) : null}
-    </>
+    </SideNavigation>
   );
 };
 

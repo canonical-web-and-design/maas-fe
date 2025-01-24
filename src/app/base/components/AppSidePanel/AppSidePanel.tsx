@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 
 import { ContentSection } from "@canonical/maas-react-components";
-import { useOnEscapePressed } from "@canonical/react-components";
+import { AppAside, useOnEscapePressed } from "@canonical/react-components";
 import classNames from "classnames";
 
 import type { SidePanelSize } from "@/app/base/side-panel-context";
@@ -49,16 +49,16 @@ const AppSidePanelContent = ({
   content,
 }: AppSidePanelProps): JSX.Element => {
   return (
-    <aside
+    <AppAside
       aria-label={title ?? undefined}
-      className={classNames("l-aside", {
-        "is-collapsed": !content,
-        "is-narrow": size === "narrow",
+      className={classNames({
         "is-large": size === "large",
-        "is-wide": size === "wide",
       })}
+      collapsed={!content}
       data-testid="app-side-panel"
       id="aside-panel"
+      narrow={size === "narrow"}
+      wide={size === "wide"}
     >
       <ContentSection>
         {title ? (
@@ -72,7 +72,7 @@ const AppSidePanelContent = ({
         ) : null}
         {content}
       </ContentSection>
-    </aside>
+    </AppAside>
   );
 };
 

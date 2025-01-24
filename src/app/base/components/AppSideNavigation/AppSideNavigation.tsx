@@ -1,6 +1,11 @@
 import { useEffect, useMemo } from "react";
 
 import { Navigation, NavigationBar } from "@canonical/maas-react-components";
+import {
+  AppNavigation,
+  AppNavigationBar,
+  Panel,
+} from "@canonical/react-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation, useMatch } from "react-router-dom";
 import { useStorageState } from "react-storage-hooks";
@@ -55,54 +60,51 @@ export const AppSideNavigation = ({
   vaultIncomplete,
 }: SideNavigationProps) => (
   <>
-    <NavigationBar className={`is-maas-${theme}`}>
-      <Navigation.Header>
-        <NavigationBanner />
-        <Navigation.Controls>
-          <NavigationBar.MenuButton
-            onClick={() => {
-              setIsCollapsed(!isCollapsed);
-            }}
-          >
-            Menu
-          </NavigationBar.MenuButton>
-        </Navigation.Controls>
-      </Navigation.Header>
-    </NavigationBar>
-    <Navigation className={`is-maas-${theme}`} isCollapsed={isCollapsed}>
-      <Navigation.Drawer>
-        <Navigation.Header>
-          <NavigationBanner>
-            <Navigation.Controls>
-              <NavigationBar.MenuButton
-                onClick={() => {
-                  setIsCollapsed(!isCollapsed);
-                }}
-              >
-                Close menu
-              </NavigationBar.MenuButton>
-              <Navigation.CollapseToggle
-                isCollapsed={isCollapsed}
-                setIsCollapsed={setIsCollapsed}
-              />
-            </Navigation.Controls>
-          </NavigationBanner>
-        </Navigation.Header>
-        <Navigation.Content>
-          <AppSideNavItems
-            authUser={authUser}
-            groups={filteredGroups}
-            isAdmin={isAdmin}
-            isAuthenticated={isAuthenticated}
-            logout={logout}
-            path={path}
-            setIsCollapsed={setIsCollapsed}
-            showLinks={showLinks}
-            vaultIncomplete={vaultIncomplete}
-          />
-        </Navigation.Content>
-      </Navigation.Drawer>
-    </Navigation>
+    <AppNavigationBar className={`is-maas-${theme}`}>
+      <Panel
+        dark
+        logo={<NavigationBanner />}
+        toggle={{
+          label: "Menu",
+          onClick: () => setIsCollapsed(!isCollapsed),
+        }}
+      />
+    </AppNavigationBar>
+    <AppNavigation className={`is-maas-${theme}`} collapsed={isCollapsed}>
+      <Panel
+        controls={
+          <>
+            <NavigationBar.MenuButton
+              onClick={() => {
+                setIsCollapsed(!isCollapsed);
+              }}
+            >
+              Close menu
+            </NavigationBar.MenuButton>
+            <Navigation.CollapseToggle
+              isCollapsed={isCollapsed}
+              setIsCollapsed={setIsCollapsed}
+            />
+          </>
+        }
+        controlsClassName="u-no-margin--top"
+        dark
+        logo={<NavigationBanner />}
+        stickyHeader
+      >
+        <AppSideNavItems
+          authUser={authUser}
+          groups={filteredGroups}
+          isAdmin={isAdmin}
+          isAuthenticated={isAuthenticated}
+          logout={logout}
+          path={path}
+          setIsCollapsed={setIsCollapsed}
+          showLinks={showLinks}
+          vaultIncomplete={vaultIncomplete}
+        />
+      </Panel>
+    </AppNavigation>
   </>
 );
 

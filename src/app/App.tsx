@@ -1,7 +1,13 @@
 import type { ReactNode } from "react";
 import { Suspense, useEffect } from "react";
 
-import { Notification } from "@canonical/react-components";
+import {
+  AppNavigationBar,
+  AppStatus,
+  Application,
+  Notification,
+  Panel,
+} from "@canonical/react-components";
 import { usePrevious } from "@canonical/react-components/dist/hooks";
 import * as Sentry from "@sentry/browser";
 import { useDispatch, useSelector } from "react-redux";
@@ -168,21 +174,20 @@ export const App = (): JSX.Element => {
   }
 
   return (
-    <div className="l-application" id={MAAS_UI_ID}>
-      <ThemePreviewContextProvider>
+    <ThemePreviewContextProvider>
+      <Application id={MAAS_UI_ID}>
         <ConnectionStatus />
         {authLoaded && authenticated ? (
           <AppSideNavigation />
         ) : (
-          <header className="l-navigation-bar is-pinned">
-            <div className="p-panel is-dark is-maas-default">
-              <div className="p-panel__header">
-                <NavigationBanner />
-              </div>
-            </div>
-          </header>
+          <AppNavigationBar className="is-pinned">
+            <Panel
+              className="is-maas-default"
+              dark
+              logo={<NavigationBanner />}
+            />
+          </AppNavigationBar>
         )}
-
         <Suspense
           fallback={
             <PageContent
@@ -194,11 +199,11 @@ export const App = (): JSX.Element => {
         >
           {content}
         </Suspense>
-        <aside className="l-status">
+        <AppStatus>
           <StatusBar />
-        </aside>
-      </ThemePreviewContextProvider>
-    </div>
+        </AppStatus>
+      </Application>
+    </ThemePreviewContextProvider>
   );
 };
 
