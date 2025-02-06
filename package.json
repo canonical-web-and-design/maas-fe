@@ -158,7 +158,7 @@
     "npm-package-json-lint": "8.0.0",
     "postcss-normalize": "10.0.1",
     "prettier": "3.3.2",
-    "redux-mock-store": "1.5.4",
+    "redux-mock-store": "1.5.5",
     "redux-saga-test-plan": "4.0.6",
     "sass": "1.77.2",
     "start-server-and-test": "2.0.3",
