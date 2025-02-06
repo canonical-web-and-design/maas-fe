@@ -7,6 +7,8 @@ Having a locally running MAAS where you can deploy your own virtual machines can
 - Hardware that meets the [minimum requirements](https://maas.io/docs/reference-installation-requirements)
 - Knowledge of Ubuntu and basic Linux commands
 
+Note: If you've previously installed MAAS locally, make sure you uninstall it completely, or the LXD setup will not work.
+
 ## Install and initialise LXD
 
 1. Disable your firewall so your containers can communicate with your local network
