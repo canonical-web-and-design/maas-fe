@@ -130,7 +130,7 @@
     "address": "2.0.2",
     "babel-plugin-named-exports-order": "0.0.2",
     "colors": "1.4.0",
-    "concurrently": "8.2.2",
+    "concurrently": "9.1.2",
     "cooky-cutter": "1.5.4",
     "cypress": "13.12.0",
     "cypress-axe": "1.5.0",
