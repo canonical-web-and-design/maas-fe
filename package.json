@@ -47,7 +47,7 @@
   "dependencies": {
     "@canonical/maas-react-components": "1.28.0",
     "@canonical/macaroon-bakery": "1.3.2",
-    "@canonical/react-components": "0.55.0",
+    "@canonical/react-components": "2.1.0",
     "@hey-api/client-fetch": "0.6.0",
     "@redux-devtools/extension": "3.3.0",
     "@reduxjs/toolkit": "1.9.7",
